@@ -8,6 +8,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from "fastify-type-provider-zod"
+import { routes } from "./routes"
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -30,6 +31,8 @@ app.register(fastifySwagger, {
 app.register(fastifySwaggerUi, {
   routePrefix: "/docs",
 })
+
+app.register(routes)
 
 app.listen({ port: 3333 }).then(() => {
   console.log("HTTP Server Running!")
