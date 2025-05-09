@@ -4,6 +4,8 @@
   "description": "API Rest to generate QRCode",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc",
     "dev": "tsnd --respawn --env-file=.env --transpile-only src/server.ts"
   },
   "repository": {

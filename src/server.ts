@@ -37,14 +37,14 @@ async function main() {
 
   const bucket = process.env.AWS_BUCKET_NAME as string
   const region = process.env.AWS_REGION as string
-  const storage = new S3StorageAdapter(bucket, region)
+  const storage = new S3StorageAdapter(region, bucket)
   const qrCodeService = new QrCodeGeneratorService(storage)
 
   const qrCodeController = QrCodeController(qrCodeService)
   app.register(qrCodeController)
 
-  app.listen({ port: 3333 }).then(() => {
-    console.log("HTTP Server Running!")
+  app.listen({ port: 3333, host: "0.0.0.0" }).then((address) => {
+    console.log(`Server running on ${address}`)
   })
 }
 
